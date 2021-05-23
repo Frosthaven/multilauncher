@@ -24,9 +24,18 @@ Here is an example `multilaunch.json` configuration file:
 
 `run_these` is an array of programs you want to run (notice we don't add ".exe" to anything). Make sure your main game or application is listed here!
 
-`kill_these_after` is an array of program names as they appear in the task manager. These will be killed when the watched process exits (IE: You've closed the game).
+`kill_these_after` is an array of program names as they appear in the task manager. These will be killed when the watched process exits (example: You've closed the game).
 
 *In the example above, we are launching both Path of Exile and a trade macro program. When "PathOfExile_x64" is no longer running, we kill the programs "Awakened-PoE-Trade-2.10.1" and "Awakened PoE Trade" - two processes spawned by the trade macro when run.*
+
+# Adding CMD Scripts (Advanced)
+There are two json config points for running cmd scripts:
+
+The `run_cmd` entries will execute after `run_these` entries
+
+The `run_cmd_after` entries will execute last after the `kill_these_after` entries.
+
+*Note: if your cmd scripts require double quotes, be sure to escape each one you use (example: `/"`)
 
 # Building from source
 First, you want to install the ps2exe powershell module. Open a new powershell window (as admin) and run this command (selecting yes to all options):
