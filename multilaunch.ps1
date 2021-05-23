@@ -1,10 +1,6 @@
-$scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
-
 # FUNCTIONS *******************************************************************
 #******************************************************************************
-
-function Wait-ForProcess
-{
+function Wait-ForProcess {
     param
     (
         $Name = 'notepad',
@@ -35,15 +31,18 @@ function Wait-ForProcess
 
 # CONFIG **********************************************************************
 #******************************************************************************
+$root_path = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\') 
+if ($root_path -eq $PSHOME.TrimEnd('\')) 
+{     
+	$root_path = $PSScriptRoot 
+}
 
 $watch_process_name = ""
 $run_these = @()
 $kill_these_after = @()
 
-
-
-if (Test-Path -Path ($scriptPath+"\multilaunch.json") -PathType Leaf) {
-$json = Get-Content -Raw ($scriptPath+"\multilaunch.json") | ConvertFrom-Json
+if (Test-Path -Path ($root_path+"\multilaunch.json") -PathType Leaf) {
+$json = Get-Content -Raw ($root_path+"\multilaunch.json") | ConvertFrom-Json
     $json | foreach {
         $watch_process_name = [IO.Path]::GetFileNameWithoutExtension($_.watch_process_name)
         $_.run_these | foreach {
@@ -64,7 +63,6 @@ $run_these | ForEach-Object {
     Write-Host "Running $_"
     Start-Process $full -WorkingDirectory $path
 }
-
 
 Wait-ForProcess -Name $watch_process_name
 $a = Get-Process $watch_process_name
