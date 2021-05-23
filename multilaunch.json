@@ -1,5 +1,17 @@
 {
-	"watch_process_name": "calc",
-	"run_these": [],
-	"kill_these_after": []
+	"watch_process_name": "",
+
+	"run_these": [
+
+	],
+	"run_cmd": [
+
+	],
+
+	"kill_these_after": [
+
+	],
+	"run_cmd_after": [
+
+	]
 }
