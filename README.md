@@ -1,7 +1,7 @@
 # Getting Started / Download
 You will need both a compiled `multilaunch.exe` and `multilaunch.json` file.
 
-You can find the latest `multilaunch.zip` on the [releases](https://github.com/Frosthaven/multilauncher/releases) page under `Assets`
+You can find the latest `multilaunch.zip` on the [releases](https://github.com/Frosthaven/multilauncher/releases) page under "Assets".
 
 # Configuration
 Here is an example `multilaunch.json` configuration file:
