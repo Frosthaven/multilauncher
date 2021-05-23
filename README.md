@@ -35,13 +35,15 @@ Here is an example `multilaunch.json` configuration file:
 # Adding CMD Scripts (Advanced)
 There are two json config points for running cmd scripts:
 
-The `run_cmd` entries will execute after `run_these` entries
+`run_cmd` entries will execute after the programs have started, and `run_cmd_after` entries will execute after the programs have ended
 
-The `run_cmd_after` entries will execute last after the `kill_these_after` entries.
+*Note: if your cmd scripts require double quotes, be sure to escape each one you use (example: `\"`)
 
-*Note: if your cmd scripts require double quotes, be sure to escape each one you use (example: `/"`)
+# Order of Events
 
-# Building from source
+run multilauncher.exe > `run_these` > `run_cmd` > waits for `watch_process_name` to close > `run_these_after` > `run_cmd_after`
+
+# Building from Source
 First, you want to install the ps2exe powershell module. Open a new powershell window (as admin) and run this command (selecting yes to all options):
 
 ```ps1
