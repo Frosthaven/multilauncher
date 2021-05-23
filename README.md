@@ -25,3 +25,16 @@ Here is an example `multilaunch.json` configuration file:
 `kill_these_after` is an array of program names as they appear in the task manager. These will be killed when the watched process exits (or you've left the game).
 
 In the example above, we are launching both Path of Exile and a trade macro program. When PathOfExile_x64 is no longer running, we kill the programs "Awakened-PoE-Trade-2.10.1" and ""Awakened PoE Trade" - two processes spawned by the trade macro when run.
+
+# Building from source
+First, you want to install the ps2exe powershell module. Open a new powershell window (as admin) and run this command (selecting yes to all options):
+
+```ps1
+Install-Module ps2exe
+```
+
+Then, you will want to call this module to compile the script
+
+```ps1
+ps2exe .\multilaunch.ps1 .\multilaunch.exe
+```
