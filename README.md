@@ -8,15 +8,15 @@ Here is an example `multilaunch.json` configuration file:
 
 ```json
 {
-	"watch_process_name": "PathOfExile_x64",
-	"run_these": [
-		"D:/StandaloneLibrary/Grinding Gear Games/PathOfExile",
-		"D:/StandaloneLibrary/POE Tools/Awakened-PoE-Trade-2.10.1"
-	],
-	"kill_these_after": [
-		"Awakened-PoE-Trade-2.10.1",
-		"Awakened POE Trade"
-	]
+  "watch_process_name": "PathOfExile_x64",
+  "run_these": [
+    "D:/StandaloneLibrary/Grinding Gear Games/PathOfExile",
+    "D:/StandaloneLibrary/POE Tools/Awakened-PoE-Trade-2.10.1"
+  ],
+  "kill_these_after": [
+    "Awakened-PoE-Trade-2.10.1",
+    "Awakened POE Trade"
+  ]
 }
 ```
 
