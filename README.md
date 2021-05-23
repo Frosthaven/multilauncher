@@ -1,5 +1,5 @@
 # Getting Started
-In order for this to work, you will need both a compiled `multilaunch.exe` and `multilaunch.json` file, placed on your computer next to each other. You can find the latest build on the [releases](https://github.com/Frosthaven/multilauncher/releases) page
+In order for this to work, you will need both a compiled `multilaunch.exe` and `multilaunch.json` file, placed on your computer next to each other. You can find the latest build in a zip file located on the [releases](https://github.com/Frosthaven/multilauncher/releases) page
 
 # Configuration
 Here is an example `multilaunch.json` configuration file:
