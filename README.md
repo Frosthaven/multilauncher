@@ -38,3 +38,6 @@ Then, you will want to call this module to compile the script
 ```ps1
 ps2exe .\multilaunch.ps1 .\multilaunch.exe
 ```
+
+# Why Compile To EXE?
+Althought powershell scripts are very agile on their own, game launchers are quite picky. By compiling to an exe, we can feed the exe to game launcher libraries such as GoG.
