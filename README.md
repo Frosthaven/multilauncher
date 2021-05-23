@@ -41,12 +41,13 @@ There are two json config points for running cmd scripts:
 
 # Order of Events
 
-1. multilauncher.exe is run
+1. multilauncher.exe starts
 2. `run_these`
 3. `run_cmd`
 4. waits for `watch_process_name` to close
 5. `run_these_after`
 6. `run_cmd_after`
+7. multilauncher.exe exits
 
 # Building from Source
 First, you want to install the ps2exe powershell module. Open a new powershell window (as admin) and run this command (selecting yes to all options):
