@@ -14,17 +14,13 @@ Here is an example `multilaunch.json` configuration file:
     "D:/StandaloneLibrary/Grinding Gear Games/PathOfExile",
     "D:/StandaloneLibrary/POE Tools/Awakened-PoE-Trade-2.10.1"
   ],
-  "run_cmd": [
-
-  ],
+  "run_cmd": [],
 
   "kill_these_after": [
     "Awakened-PoE-Trade-2.10.1",
     "Awakened POE Trade"
   ],
-  "run_cmd_after": [
-
-  ]
+  "run_cmd_after": []
 }
 ```
 
