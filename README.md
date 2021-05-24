@@ -1,3 +1,7 @@
+# Overview
+
+Sometimes games are best with companion apps. Launching those apps and closing them every time is tedious. This project is simple in scope, but takes away the tedium by giving you a single exe that can launch and close companion apps for you. Now with custom cmd support!
+
 # Getting Started / Download
 You will need both a compiled `multilaunch.exe` and `multilaunch.json` file.
 
