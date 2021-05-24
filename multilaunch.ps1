@@ -13,6 +13,7 @@ if ($root_path -eq $PSHOME.TrimEnd('\'))
 }
 
 # prepare values we want from json config file
+$wipe_tray = $false
 $watch_process_name = ""
 $run_these = @()
 $run_cmd = @()
@@ -36,6 +37,7 @@ $json = Get-Content -Raw $config | ConvertFrom-Json
         $_.kill_these_after | foreach {
             $kill_these_after += $_
         }
+        $wipe_tray = $_.wipe_tray
     }
 }
 
@@ -60,24 +62,35 @@ function Wait-ForProcess {
     }
 
 
-    #Write-Host "Waiting for $Name to end..." -NoNewline
     while ( (Get-Process -Name $Name -ErrorAction SilentlyContinue).Count -eq $NumberOfProcesses )
     {
-        #Write-Host '.' -NoNewline
         Start-Sleep -Milliseconds 400
     }
+}
 
-    Write-Host ''
+function Wipe-Systray {
+    # this is a hacky way to wipe dead systray icons from killed process by
+    # moving the mouse across the tray. due to the nature of it being so hacky
+    # this is currently an undocumented feature
+    Add-Type -AssemblyName System.Windows.Forms
+    $screen = [System.Windows.Forms.SystemInformation]::VirtualScreen
+    $x = $screen.Width
+    $y = $screen.Height - 30
+    $end = $screen.Width / 3 * 2
+    $original = [Windows.Forms.Cursor]::Position
+    while ($x -gt $end) {
+        [Windows.Forms.Cursor]::Position = "$x, $y"
+        $x -= 20
+        Start-Sleep -Milliseconds 1
+    }
+    [Windows.Forms.Cursor]::Position = $original
 }
 
 # RUN **************************************************************************
 #*******************************************************************************
 
-# launch extras
 Write-Host 
-Write-Host "************************************************************"
 Write-Host "Running Applications..."
-Write-Host "************************************************************"
 Write-Host 
 $run_these | ForEach-Object {
     $full = $_
@@ -87,39 +100,35 @@ $run_these | ForEach-Object {
 }
 
 Write-Host 
-Write-Host "************************************************************"
 Write-Host "Running Startup Commands..."
-Write-Host "************************************************************"
 Write-Host 
 $run_cmd | ForEach-Object {
     cmd.exe /c $_
 }
 
 Write-Host 
-Write-Host "************************************************************"
-Write-Host "Waiting for $watch_process_name to end..."
-Write-Host "************************************************************"
+Write-Host "[Waiting for $watch_process_name to end]"
 Write-Host 
-# wait for the process to load and then quit
 Wait-ForProcess -Name $watch_process_name
 $a = Get-Process $watch_process_name
 $a.waitforexit()
 
 Write-Host 
-Write-Host "************************************************************"
 Write-Host "Killing Applications..."
-Write-Host "************************************************************"
 Write-Host 
 $kill_these_after | ForEach-Object {
     Write-Host "  > $_"
+    Stop-Process -Name $_ #attempts a graceful close first
     Stop-Process -Name $_ -Force
 }
 
 Write-Host 
-Write-Host "************************************************************"
 Write-Host "Running Shutdown Commands..."
-Write-Host "************************************************************"
 Write-Host 
 $run_cmd_after | ForEach-Object {
     cmd.exe /c $_
+}
+
+if ($wipe_tray -eq $true) {
+    Wipe-Systray
 }
