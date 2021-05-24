@@ -57,6 +57,11 @@ cmd
 multilaunch.exe -config "path/to/the/config.json"
 ```
 
+game launcher "arguments" or "parameters" box
+```cmd
+-config "path/to/the/config.json"
+```
+
 # Order of Events
 
 1. multilauncher.exe starts
