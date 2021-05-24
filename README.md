@@ -16,12 +16,11 @@ Here is an example `multilaunch.json` configuration file:
 
   "run_these": [
     "D:/StandaloneLibrary/Grinding Gear Games/PathOfExile",
-    "D:/StandaloneLibrary/POE Tools/Awakened-PoE-Trade-2.10.1"
+    "C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade"
   ],
   "run_cmd": [],
 
   "kill_these_after": [
-    "Awakened-PoE-Trade-2.10.1",
     "Awakened POE Trade"
   ],
   "run_cmd_after": []
@@ -34,7 +33,7 @@ Here is an example `multilaunch.json` configuration file:
 
 `kill_these_after` is an array of program names as they appear in the task manager. These will be killed when the watched process exits (example: You've closed the game).
 
-*In the example above, we are launching both Path of Exile and a trade macro program. When "PathOfExile_x64" is no longer running, we kill the programs "Awakened-PoE-Trade-2.10.1" and "Awakened PoE Trade" - two processes spawned by the trade macro when run.*
+*In the example above, we are launching both Path of Exile and a trade macro program. When "PathOfExile_x64" is no longer running, we kill the process named "Awakened PoE Trade".*
 
 # Adding CMD Scripts (Advanced)
 There are two json config points for running cmd scripts:
