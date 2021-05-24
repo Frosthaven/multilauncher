@@ -1,3 +1,44 @@
+# SETUP ************************************************************************
+#*******************************************************************************
+# accept command line parameters
+param (
+    [string]$config = "$root_path\multilaunch.json"
+)
+
+# get the root path, whether as a ps1 script or compiled exe
+$root_path = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\') 
+if ($root_path -eq $PSHOME.TrimEnd('\')) 
+{     
+    $root_path = $PSScriptRoot 
+}
+
+# prepare values we want from json config file
+$watch_process_name = ""
+$run_these = @()
+$run_cmd = @()
+$kill_these_after = @()
+$run_cmd_after = @()
+
+# read the json config into our above values
+if (Test-Path -Path $config -PathType Leaf) {
+$json = Get-Content -Raw $config | ConvertFrom-Json
+    $json | foreach {
+        $watch_process_name = [IO.Path]::GetFileNameWithoutExtension($_.watch_process_name)
+        $_.run_these | foreach {
+            $run_these += $_
+        }
+        $_.run_cmd | foreach {
+            $run_cmd += $_
+        }
+        $_.run_cmd_after | foreach {
+            $run_cmd_after += $_
+        }
+        $_.kill_these_after | foreach {
+            $kill_these_after += $_
+        }
+    }
+}
+
 # FUNCTIONS ********************************************************************
 #*******************************************************************************
 function Wait-ForProcess {
@@ -31,36 +72,7 @@ function Wait-ForProcess {
 
 # SETUP ************************************************************************
 #*******************************************************************************
-$root_path = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\') 
-if ($root_path -eq $PSHOME.TrimEnd('\')) 
-{     
-	$root_path = $PSScriptRoot 
-}
 
-$watch_process_name = ""
-$run_these = @()
-$run_cmd = @()
-$kill_these_after = @()
-$run_cmd_after = @()
-
-if (Test-Path -Path ($root_path+"\multilaunch.json") -PathType Leaf) {
-$json = Get-Content -Raw ($root_path+"\multilaunch.json") | ConvertFrom-Json
-    $json | foreach {
-        $watch_process_name = [IO.Path]::GetFileNameWithoutExtension($_.watch_process_name)
-        $_.run_these | foreach {
-            $run_these += $_
-        }
-        $_.run_cmd | foreach {
-            $run_cmd += $_
-        }
-        $_.run_cmd_after | foreach {
-            $run_cmd_after += $_
-        }
-        $_.kill_these_after | foreach {
-            $kill_these_after += $_
-        }
-    }
-}
 
 # RUN **************************************************************************
 #*******************************************************************************

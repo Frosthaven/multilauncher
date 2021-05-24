@@ -37,7 +37,22 @@ There are two json config points for running cmd scripts:
 
 `run_cmd` entries will execute after the programs have started, and `run_cmd_after` entries will execute after the programs have ended
 
-*Note: if your cmd scripts require double quotes, be sure to escape each one you use (example: `\"`)
+*Note: If your cmd scripts require double quotes, be sure to escape each one you use (example: `\"`)
+
+
+# Using A Different Config File
+
+You can run multilauncher with a command line argument to provide your own config file. All of these are valid:
+
+powershell
+```ps1
+Start-Process multilaunch.exe -ArgumentList "-config path/to/the/config.json"
+```
+
+cmd
+```cmd
+multilaunch.exe -config "path/to/the/config.json"
+```
 
 # Order of Events
 
