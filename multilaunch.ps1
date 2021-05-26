@@ -108,6 +108,7 @@ Write-Host
 Write-Host "Running Startup Commands..."
 Write-Host 
 $run_cmd | ForEach-Object {
+    Write-Host "  > $_"
     cmd.exe /c $_
 }
 
@@ -131,6 +132,7 @@ Write-Host
 Write-Host "Running Shutdown Commands..."
 Write-Host 
 $run_cmd_after | ForEach-Object {
+    Write-Host "  > $_"
     cmd.exe /c $_
 }
 
