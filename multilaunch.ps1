@@ -2,14 +2,19 @@
 #*******************************************************************************
 # accept command line parameters
 param (
-    [string]$config = "$root_path\multilaunch.json"
+    [string]$config = "none"
 )
 
 # get the root path, whether as a ps1 script or compiled exe
 $root_path = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\') 
 if ($root_path -eq $PSHOME.TrimEnd('\')) 
 {     
-    $root_path = $PSScriptRoot 
+    $root_path = $PSScriptRoot
+}
+
+#backfill config if not provided with default root path
+if ($config -eq "none") {
+    $config = "$root_path\multilaunch.json"
 }
 
 # prepare values we want from json config file
