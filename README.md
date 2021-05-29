@@ -10,7 +10,8 @@ You can find the latest `multilaunch.zip` on the [releases](https://github.com/F
 # Configuration
 The `multilaunch.json` configuration file has 4 sections: `app`, `before`, `after`, and `extras`.
 
-**app**
+**app:**
+
 This is the configuration section for your main program you intend to launch.
 
 `launch_path` is the full path to the main application's executable (without extension)
