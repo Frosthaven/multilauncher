@@ -37,42 +37,42 @@ This section holds extra configuration options.
 ## example multilaunch.json
 ```json
 {
-	"app": {
-		"launch_path": "C:/Games/Grinding Gear Games/PathOfExile",
-		"watch_process_for_exit": "PathOfExile_x64",
-		"arguments": [
+  "app": {
+    "launch_path": "C:/Games/Grinding Gear Games/PathOfExile",
+    "watch_process_for_exit": "PathOfExile_x64",
+    "arguments": [
       "--nologo",
       "--waitforpreload"
-		]
-	},
+    ]
+  },
 
-	"before": {
-		"kill_tasks": [
+  "before": {
+    "kill_tasks": [
 			
-		],
-		"run_programs": [
-			"C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade"
-		],
-		"run_commands": [
+    ],
+    "run_programs": [
+      "C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade"
+    ],
+    "run_commands": [
 
-		]
-	},
+    ]
+  },
 
-	"after": {
-		"kill_tasks": [
-			"Awakened POE Trade"
-		],
-		"run_programs": [
+  "after": {
+    "kill_tasks": [
+      "Awakened POE Trade"
+    ],
+    "run_programs": [
 			
-		],
-		"run_commands": [
+    ],
+    "run_commands": [
 
-		]
-	},
+    ]
+  },
 
-	"extras": {
-		"wipe_sys_tray": true
-	}
+  "extras": {
+    "wipe_sys_tray": true
+  }
 }
 ```
 
