@@ -19,13 +19,16 @@ This is the configuration section for your main program you intend to launch.
 
 `arguments` is an array of arguments you want to feed to the main application.
 
-**before**
+**before:**
+
 Entries in this configuration section take place before the main application launches. Supports the arrays `kill_tasks`, `run_programs`, and `run_commands`.
 
-**after**
+**after:**
+
 Entries in this configuration section take place after the main application is closed. Supports the arrays `kill_tasks`, `run_programs`, and `run_commands`.
 
-**extras**
+**extras:**
+
 This section holds extra configuration options.
 
 `wipe_sys_tray`: Can be `true` or `false`. If true, Multilaunch will swipe your mouse across the system tray to remove ghost icons from killed processes.
