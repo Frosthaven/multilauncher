@@ -7,7 +7,7 @@ You will need both a compiled `multilaunch.exe` and `multilaunch.json` file.
 
 You can find the latest `multilaunch.zip` on the [releases](https://github.com/Frosthaven/multilauncher/releases) page under "Assets".
 
-# Configuration
+# Configuration File
 The `multilaunch.json` configuration file has the following sections and values:
 
 * `app`: This is the configuration section for the main program you intend to launch.
