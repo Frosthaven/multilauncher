@@ -114,7 +114,7 @@ Install-Module ps2exe
 Then, you will want to call the build script to begin compilation:
 
 ```ps1
-ps2exe .\build
+ps2exe ./build
 ```
 
 # Why Compile To EXE?
