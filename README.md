@@ -12,29 +12,29 @@ The `multilaunch.json` configuration file has 4 sections:
 * `app`
 * `before`
 * `after`
-* `extras`.
+* `extras`
 
-**app:** This is the configuration section for your main program you intend to launch.
+`app`: This is the configuration section for your main program you intend to launch.
 
 * `launch_path` is the full path to the main application's executable (without extension)
 * `watch_process_for_exit` is the process name (without extension) as it appears in task manager for the main application while running.
 * `arguments` is an array of arguments you want to feed to the main application.
 
-**before:** Entries in this configuration section take place before the main application launches. Supports the arrays:
+`before`: Entries in this configuration section take place before the main application launches. Supports the arrays:
 
 * `kill_tasks`
 * `run_programs`
 * `run_commands`
 
-**after:** Entries in this configuration section take place after the main application is closed. Supports the arrays:
+`after`: Entries in this configuration section take place after the main application is closed. Supports the arrays:
 
 * `kill_tasks`
 * `run_programs`
 * `run_commands`
 
-**extras:** This section holds extra configuration options.
+`extras`: This section holds extra configuration options.
 
-`wipe_sys_tray`: Can be `true` or `false`. If true, Multilaunch will swipe your mouse across the system tray to remove ghost icons from killed processes.
+* `wipe_sys_tray`: Can be `true` or `false`. If true, Multilaunch will swipe your mouse across the system tray to remove ghost icons from killed processes.
 
 ## example multilaunch.json
 ```json
