@@ -7,7 +7,7 @@ You will need both a compiled `multilaunch.exe` and `multilaunch.json` file.
 
 You can find the latest `multilaunch.zip` on the [releases](https://github.com/Frosthaven/multilauncher/releases) page under "Assets".
 
-# Configuration File Layout
+# Config
 The `multilaunch.json` configuration file has the following sections and values:
 
 * `app`: This is the configuration section for the main program you intend to launch.
@@ -29,12 +29,12 @@ The `multilaunch.json` configuration file has the following sections and values:
 ```json
 {
   "app": {
+    "watch_process_for_exit": "PathOfExile_x64",
     "launch_path": "C:/Games/Grinding Gear Games/PathOfExile",
     "arguments": [
       "--nologo",
       "--waitforpreload"
-    ],
-    "watch_process_for_exit": "PathOfExile_x64"
+    ]
   },
 
   "before": {
