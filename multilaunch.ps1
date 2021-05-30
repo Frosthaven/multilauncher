@@ -116,20 +116,23 @@ if (Test-Path -Path $config -PathType Leaf) {
 
             # launch section ******************************
             if ($_.app -and $_.app.launch_path -and $_.app.watch_process_for_exit) {
+
+                $path = Split-Path -Path $_.app.launch_path
                 $friendly_path_name = $_.app.launch_path
                 $friendly_name = $_.app.watch_process_for_exit
                 if ($_.app.arguments) {
                     $friendly_arguments = $_.app.arguments.Split(',')
                     Write-Host "[Launch]: $friendly_path_name $friendly_arguments" -ForegroundColor Magenta -BackgroundColor Black
-                    Start-Process $friendly_path_name -ArgumentList $_.app.arguments.Split(',')
+                    Start-Process $friendly_path_name -WorkingDirectory $path -ArgumentList $_.app.arguments.Split(',')
                     Remove-Variable friendly_arguments
                 } else {
                     Write-Host "[Launch]: $friendly_path_name" -ForegroundColor Magenta -BackgroundColor Black
-                    Start-Process $friendly_path_name
+                    Start-Process $friendly_path_name -WorkingDirectory $path
                 }
                 Write-Host "[Launch]: Waiting for $friendly_name to end..." -ForegroundColor Magenta -BackgroundColor Black
                 WaitForProcess -Name $friendly_name
                 $a = Get-Process $friendly_name
+                Remove-Variable path
                 Remove-Variable friendly_path_name
                 Remove-Variable friendly_name
                 $a.waitforexit()
