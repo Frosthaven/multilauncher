@@ -55,11 +55,11 @@ The `multilaunch.json` configuration file has the following sections and values:
 }
 ```
 
-In the example above, we are launching the game "Path of Exile" with two command line arguments that the game supports. We are also telling Multilaunch to keep an eye on the "PathOfExile_x64" process.
+In the example above, we are launching the game *Path of Exile* with two command line arguments that the game supports. We are also telling Multilaunch to keep an eye on the *PathOfExile_x64* process.
 
-Before the game launches, we have Multilaunch start up a useful trade macro companion app - "Awakened PoE Trade".
+Before the game launches, we have Multilaunch start up a useful trade macro companion app - *Awakened PoE Trade*.
 
-After the game is closed (and the "PathOfExile_x64" process no longer exists), we are closing our trade macro by killing the task "Awakened POE Trade" in task manager.
+After the game is closed (and the *PathOfExile_x64* process no longer exists), we are closing our trade macro by killing the task *Awakened POE Trade* in task manager.
 
 Finally, in the extras section, we are telling Multilaunch to swipe the mouse across the system tray when everything is done. This is because killing the trade macro leaves a ghost icon in the tray, and moving the mouse over it fixes it.
 
