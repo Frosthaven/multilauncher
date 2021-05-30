@@ -23,7 +23,7 @@ The `multilaunch.json` configuration file has the following sections and values:
 * `extras`: This section holds extra configuration options.
   * `wipe_sys_tray`: Can be `true` or `false`. If true, Multilaunch will swipe your mouse across the system tray to remove ghost icons from killed processes.
 
-***Important Note:*** *In the current release, it is advisable to NOT add file extensions (like .exe) to `launch_path`, `run_programs`, or `kill_tasks`*
+***Important Note:*** *In the current release, it is advisable to NOT add file extensions (like .exe) to paths and process names unless needed inside of a `run_commands` section*
 
 # Example `multilaunch.json`
 ```json
