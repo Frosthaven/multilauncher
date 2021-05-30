@@ -6,10 +6,12 @@ param (
 )
 
 # get the root path, whether as a ps1 script or compiled exe
-$root_path = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\') 
+$root_path = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\')
+$full_script_path = [Environment]::GetCommandLineArgs()[0]
 if ($root_path -eq $PSHOME.TrimEnd('\')) 
 {     
     $root_path = $PSScriptRoot
+    $full_script_path = $root_path+"\"+$MyInvocation.MyCommand.Name
 }
 
 # backfill config if not provided with default root path
@@ -23,7 +25,7 @@ Function KillTasks {
     param($list)
 
     $list | ForEach-Object {
-        Write-Host "  > $_" -ForegroundColor Red -BackgroundColor Black
+        Write-Host "  > $_" -ForegroundColor Red
         $running_process = Get-Process $_ -ErrorAction SilentlyContinue
         if ($running_process) {
             $running_process | Stop-Process -Force
@@ -36,7 +38,7 @@ Function RunPrograms {
     param($list)
 
     $list | ForEach-Object {
-        Write-Host "  > $_" -ForegroundColor Green -BackgroundColor Black
+        Write-Host "  > $_" -ForegroundColor Green
         $full = $_
         $path = Split-Path -Path $_
         Start-Process $full -WorkingDirectory $path
@@ -49,7 +51,7 @@ Function RunCommands {
     param($list)
 
     $list | ForEach-Object {
-        Write-Host "  > $_" -ForegroundColor Blue -BackgroundColor Black
+        Write-Host "  > $_" -ForegroundColor Blue
         cmd.exe /c $_
     }
 }
@@ -97,19 +99,19 @@ Function WipeSystray {
 if (Test-Path -Path $config -PathType Leaf) {
     $json = Get-Content -Raw $config | ConvertFrom-Json
         $json | ForEach-Object {
-            Write-Host "[Begin]: Beginning Multilaunch" -ForegroundColor Yellow -BackgroundColor Black
+            Write-Host "[Begin]: Beginning Multilaunch" -ForegroundColor Yellow
             # before section ******************************
             if ($_.before) {
                 if ($_.before.kill_tasks) {
-                    Write-Host "[Before]: Killing Tasks..." -ForegroundColor Red -BackgroundColor Black
+                    Write-Host "[Before]: Killing Tasks..." -ForegroundColor Red
                     KillTasks -list $_.before.kill_tasks
                 }
                 if ($_.before.run_programs) {
-                    Write-Host "[Before]: Running Programs..." -ForegroundColor Green -BackgroundColor Black
+                    Write-Host "[Before]: Running Programs..." -ForegroundColor Green
                     RunPrograms -list $_.before.run_programs
                 }
                 if ($_.before.run_commands) {
-                    Write-Host "[Before]: Running Commands..." -ForegroundColor Blue -BackgroundColor Black
+                    Write-Host "[Before]: Running Commands..." -ForegroundColor Blue
                     RunCommands -list $_.before.run_commands
                 }
             }
@@ -122,14 +124,14 @@ if (Test-Path -Path $config -PathType Leaf) {
                 $friendly_name = $_.app.watch_process_for_exit
                 if ($_.app.arguments) {
                     $friendly_arguments = $_.app.arguments.Split(',')
-                    Write-Host "[Launch]: $friendly_path_name $friendly_arguments" -ForegroundColor Magenta -BackgroundColor Black
+                    Write-Host "[Launch]: $friendly_path_name $friendly_arguments" -ForegroundColor Magenta
                     Start-Process $friendly_path_name -WorkingDirectory $path -ArgumentList $_.app.arguments.Split(',')
                     Remove-Variable friendly_arguments
                 } else {
-                    Write-Host "[Launch]: $friendly_path_name" -ForegroundColor Magenta -BackgroundColor Black
+                    Write-Host "[Launch]: $friendly_path_name" -ForegroundColor Magenta
                     Start-Process $friendly_path_name -WorkingDirectory $path
                 }
-                Write-Host "[Launch]: Waiting for $friendly_name to end..." -ForegroundColor Magenta -BackgroundColor Black
+                Write-Host "[Launch]: Waiting for $friendly_name to end..." -ForegroundColor Magenta
                 WaitForProcess -Name $friendly_name
                 $a = Get-Process $friendly_name
                 Remove-Variable path
@@ -141,15 +143,15 @@ if (Test-Path -Path $config -PathType Leaf) {
             # after section *******************************
             if ($_.after) {
                 if ($_.after.kill_tasks) {
-                    Write-Host "[After]: Killing Tasks..." -ForegroundColor Red -BackgroundColor Black
+                    Write-Host "[After]: Killing Tasks..." -ForegroundColor Red
                     KillTasks -list $_.after.kill_tasks
                 }
                 if ($_.after.run_programs) {
-                    Write-Host "[After]: Running Programs..." -ForegroundColor Green -BackgroundColor Black
+                    Write-Host "[After]: Running Programs..." -ForegroundColor Green
                     RunPrograms -list $_.after.run_programs
                 }
                 if ($_.after.run_commands) {
-                    Write-Host "[After]: Running Commands..." -ForegroundColor Blue -BackgroundColor Black
+                    Write-Host "[After]: Running Commands..." -ForegroundColor Blue
                     RunCommands -list $_.after.run_commands
                 }
             }
@@ -163,7 +165,7 @@ if (Test-Path -Path $config -PathType Leaf) {
         }
 }
 
-Write-Host "[End]: Multilaunch has ended successfully!" -ForegroundColor Yellow -BackgroundColor Black
+Write-Host "[End]: Multilaunch has ended successfully!" -ForegroundColor Yellow
 
 <# in case I want to add elevated sections, here's a self-reminder:
     stop-exe-list-elevated -list $kill_these_after_elevated
