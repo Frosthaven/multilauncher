@@ -10,7 +10,7 @@ You can find the latest `multilaunch.zip` on the [releases](https://github.com/F
 # Configuration
 The `multilaunch.json` configuration file has the following sections and values:
 
-* `app`: This is the configuration section for your main program you intend to launch.
+* `app`: This is the configuration section for the main program you intend to launch.
   * `launch_path` is the full path to the main application's executable
   * `watch_process_for_exit` is the process name as it appears in task manager for the main application while running.
   * `arguments` is an array of arguments you want to feed to the main application.
@@ -23,7 +23,7 @@ The `multilaunch.json` configuration file has the following sections and values:
 * `extras`: This section holds extra configuration options.
   * `wipe_sys_tray`: Can be `true` or `false`. If true, Multilaunch will swipe your mouse across the system tray to remove ghost icons from killed processes.
 
-## example multilaunch.json
+# Example `multilaunch.json`
 ```json
 {
   "app": {
