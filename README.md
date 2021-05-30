@@ -36,26 +36,14 @@ The `multilaunch.json` configuration file has the following sections and values:
   },
 
   "before": {
-    "kill_tasks": [
-			
-    ],
     "run_programs": [
       "C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade"
-    ],
-    "run_commands": [
-
     ]
   },
 
   "after": {
     "kill_tasks": [
       "Awakened POE Trade"
-    ],
-    "run_programs": [
-			
-    ],
-    "run_commands": [
-
     ]
   },
 
