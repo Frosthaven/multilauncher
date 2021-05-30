@@ -7,7 +7,7 @@ You will need both a compiled `multilaunch.exe` and `multilaunch.json` file.
 
 You can find the latest `multilaunch.zip` on the [releases](https://github.com/Frosthaven/multilauncher/releases) page under "Assets".
 
-# Configuration File
+# Configuration File Layout
 The `multilaunch.json` configuration file has the following sections and values:
 
 * `app`: This is the configuration section for the main program you intend to launch.
@@ -22,6 +22,8 @@ The `multilaunch.json` configuration file has the following sections and values:
 
 * `extras`: This section holds extra configuration options.
   * `wipe_sys_tray`: Can be `true` or `false`. If true, Multilaunch will swipe your mouse across the system tray to remove ghost icons from killed processes.
+
+***Important Note:*** *In the current release, it is advisable to NOT add file extensions (like .exe) to `launch_path`, `run_programs`, or `kill_tasks`*
 
 # Example `multilaunch.json`
 ```json
