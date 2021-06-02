@@ -7,11 +7,11 @@ param (
 
 # get the root path, whether as a ps1 script or compiled exe
 $root_path = [System.AppDomain]::CurrentDomain.BaseDirectory.TrimEnd('\')
-$full_script_path = [Environment]::GetCommandLineArgs()[0]
+# $full_script_path = [Environment]::GetCommandLineArgs()[0]
 if ($root_path -eq $PSHOME.TrimEnd('\')) 
 {     
     $root_path = $PSScriptRoot
-    $full_script_path = $root_path+"\"+$MyInvocation.MyCommand.Name
+    # $full_script_path = $root_path+"\"+$MyInvocation.MyCommand.Name
 }
 
 # backfill config if not provided with default root path
