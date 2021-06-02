@@ -1,37 +1,37 @@
 {
-	"app": {
-		"launch_path": "",
-		"watch_process_for_exit": "",
-		"arguments": [
+    "app": {
+        "launch_path": "",
+        "watch_process_for_exit": "",
+        "arguments": [
 
-		]
-	},
+        ]
+    },
 
-	"before": {
-		"kill_tasks": [
-			
-		],
-		"run_programs": [
-			
-		],
-		"run_commands": [
+    "before": {
+        "kill_tasks": [
 
-		]
-	},
+        ],
+        "run_programs": [
 
-	"after": {
-		"kill_tasks": [
-			
-		],
-		"run_programs": [
-			
-		],
-		"run_commands": [
+        ],
+        "run_commands": [
 
-		]
-	},
+        ]
+    },
 
-	"extras": {
-		"wipe_sys_tray": false
-	}
+    "after": {
+        "kill_tasks": [
+
+        ],
+        "run_programs": [
+
+        ],
+        "run_commands": [
+
+        ]
+    },
+
+    "extras": {
+        "wipe_sys_tray": false
+    }
 }
