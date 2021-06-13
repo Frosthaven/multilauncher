@@ -38,10 +38,7 @@ The `multilaunch.json` configuration file has the following sections and values:
   "app": {
     "watch_process_for_exit": "PathOfExile_x64",
     "launch_path": "C:/Games/Grinding Gear Games/PathOfExile.exe",
-    "arguments": [
-      "--nologo",
-      "--waitforpreload"
-    ]
+    "arguments": ["--nologo","--waitforpreload"]
   },
 
   "before": {
