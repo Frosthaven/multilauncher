@@ -19,9 +19,13 @@ The `multilaunch.json` configuration file has the following sections and values:
   * `kill_tasks` an array of tasks to kill by name as they appear task manager (without extension)
   * `run_programs` an array of programs to run given the full path/to/the/file
     * Simple format:
-      * `"C:/Program Files/Google/Chrome/Application/Chrome.exe"`
+      * ```json
+        "C:/Program Files/Google/Chrome/Application/Chrome.exe"
+        ```
     * Advanced format:
-      * `{"path":"C:/Program Files/Google/Chrome/Application/Chrome.exe","cwd":"C:/Program Files/Google/Chrome/Application","arguments":["--disable-sync","--incognito"]}`
+      * ```json
+        {"path":"C:/Program Files/Google/Chrome/Application/Chrome.exe","cwd":"C:/Program Files/Google/Chrome/Application","arguments":["--disable-sync","--incognito"]}
+        ```
       * *Note: cwd and arguments will cause an error if they are empty. Omit those keys if you do not need them.*
   * `run_commands` an array of command line scripts to run
 
@@ -42,13 +46,15 @@ The `multilaunch.json` configuration file has the following sections and values:
 
   "before": {
     "run_programs": [
-      "C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade.exe"
+      "C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade.exe",
+      {"path":"C:/Program Files/Google/Chrome/Application/Chrome.exe","arguments":["--disable-sync","--incognito"]}
     ]
   },
 
   "after": {
     "kill_tasks": [
-      "Awakened POE Trade"
+      "Awakened POE Trade",
+      "chrome"
     ]
   },
 
@@ -60,9 +66,9 @@ The `multilaunch.json` configuration file has the following sections and values:
 
 In the example above, we are launching the game *Path of Exile* with two command line arguments that the game supports. We are also telling Multilaunch to keep an eye on the process named *PathOfExile_x64*.
 
-Before the game launches, we have Multilaunch start up a useful trade macro companion app - *Awakened PoE Trade.exe*.
+Before the game launches, we have Multilaunch start up a useful trade macro companion app - *Awakened PoE Trade.exe* and an incognito Chrome browser window.
 
-After the game is closed (and the *PathOfExile_x64* process no longer exists), we are closing our trade macro by killing the task *Awakened POE Trade* in task manager.
+After the game is closed (and the *PathOfExile_x64* process no longer exists), we are closing our trade macro by killing the task *Awakened POE Trade* in task manager and doing the same to chrome.
 
 Finally, in the extras section, we are telling Multilaunch to swipe the mouse across the system tray when everything is done. This is because killing the trade macro leaves a ghost icon in the tray, and moving the mouse over it fixes it.
 
