@@ -23,14 +23,12 @@ The `multilaunch.json` configuration file has the following sections and values:
 * `extras`: This section holds extra configuration options.
   * `wipe_sys_tray`: Can be `true` or `false`. If true, Multilaunch will swipe your mouse across the system tray to remove ghost icons from killed processes.
 
-***Important Note:*** *In the current release, it is advisable to NOT add file extensions (like .exe) to paths and process names unless needed inside of a `run_commands` section*
-
 # Example `multilaunch.json`
 ```json
 {
   "app": {
     "watch_process_for_exit": "PathOfExile_x64",
-    "launch_path": "C:/Games/Grinding Gear Games/PathOfExile",
+    "launch_path": "C:/Games/Grinding Gear Games/PathOfExile.exe",
     "arguments": [
       "--nologo",
       "--waitforpreload"
@@ -39,7 +37,7 @@ The `multilaunch.json` configuration file has the following sections and values:
 
   "before": {
     "run_programs": [
-      "C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade"
+      "C:/Users/frosthaven/AppData/Local/Programs/Awakened PoE Trade/Awakened PoE Trade.exe"
     ]
   },
 
@@ -55,9 +53,9 @@ The `multilaunch.json` configuration file has the following sections and values:
 }
 ```
 
-In the example above, we are launching the game *Path of Exile* with two command line arguments that the game supports. We are also telling Multilaunch to keep an eye on the *PathOfExile_x64* process.
+In the example above, we are launching the game *Path of Exile* with two command line arguments that the game supports. We are also telling Multilaunch to keep an eye on the process named *PathOfExile_x64*.
 
-Before the game launches, we have Multilaunch start up a useful trade macro companion app - *Awakened PoE Trade*.
+Before the game launches, we have Multilaunch start up a useful trade macro companion app - *Awakened PoE Trade.exe*.
 
 After the game is closed (and the *PathOfExile_x64* process no longer exists), we are closing our trade macro by killing the task *Awakened POE Trade* in task manager.
 
