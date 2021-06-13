@@ -39,12 +39,34 @@ Function RunPrograms {
     param($list)
 
     $list | ForEach-Object {
-        Write-Host "  > $_" -ForegroundColor Green
-        $full = $_
-        $path = Split-Path -Path $_
-        Start-Process $full -WorkingDirectory $path
-        Remove-Variable full
-        Remove-Variable path
+        $data_type = $_.GetType().Name
+
+        if ($data_type -eq "String") {
+            $full = $_
+            $path = Split-Path -Path $full
+            if ($path) {
+                Write-Host "  > $full" -ForegroundColor Green
+                Start-Process "$full" -WorkingDirectory "$path"
+            }
+        } elseif ($data_type -eq "PSCustomObject") {
+            $full = $_.path
+            $path = Split-Path -Path $full
+            $cwd = $path
+            $friendly_argument_list = " "
+            Write-Host "  > $full" -ForegroundColor Green
+
+            if ($_.cwd) {
+                $cwd = $_.cwd
+            }
+            if ($_.arguments) {
+                $friendly_argument_list = $_.arguments.Split(',')
+            }
+
+            Write-Host "    path: $full" -ForegroundColor Green
+            Write-Host "    cwd:  $cwd" -ForegroundColor Green
+            Write-Host "    args: $friendly_argument_list" -ForegroundColor Green
+            Start-Process "$full" -WorkingDirectory "$cwd" -ArgumentList $friendly_argument_list
+        }
     }
 }
 

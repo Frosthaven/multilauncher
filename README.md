@@ -18,6 +18,11 @@ The `multilaunch.json` configuration file has the following sections and values:
 * `before` & `after`: Entries in these sections execute actions either before the main application is launched or after it has closed.
   * `kill_tasks` an array of tasks to kill by name as they appear task manager (without extension)
   * `run_programs` an array of programs to run given the full path/to/the/file
+    * Simple format:
+      * `"C:/Program Files/Google/Chrome/Application/Chrome.exe"`
+    * Advanced format:
+      * `{"path":"C:/Program Files/Google/Chrome/Application/Chrome.exe","cwd":"C:/Program Files/Google/Chrome/Application","arguments":["--disable-sync","--incognito"]}`
+      * *Note: cwd and arguments will cause an error if they are empty. Omit those keys if you do not need them.*
   * `run_commands` an array of command line scripts to run
 
 * `extras`: This section holds extra configuration options.
