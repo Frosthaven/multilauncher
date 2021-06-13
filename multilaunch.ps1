@@ -26,7 +26,8 @@ Function KillTasks {
 
     $list | ForEach-Object {
         Write-Host "  > $_" -ForegroundColor Red
-        $running_process = Get-Process $_ -ErrorAction SilentlyContinue
+        $friendly_name = [IO.Path]::GetFileNameWithoutExtension($_)
+        $running_process = Get-Process $friendly_name -ErrorAction SilentlyContinue
         if ($running_process) {
             $running_process | Stop-Process -Force
         }
@@ -58,11 +59,12 @@ Function RunCommands {
 
 Function WaitForProcess {
     param (
-        $Name = 'notepad',
+        $Name = 'none',
         [Switch]
         $IgnoreAlreadyRunningProcesses
     )
 
+    $Name = [IO.Path]::GetFileNameWithoutExtension($Name)
     if ($IgnoreAlreadyRunningProcesses) {
         $NumberOfProcesses = (Get-Process -Name $Name -ErrorAction SilentlyContinue).Count
     } else {
@@ -121,7 +123,7 @@ if (Test-Path -Path $config -PathType Leaf) {
 
                 $path = Split-Path -Path $_.app.launch_path
                 $friendly_path_name = $_.app.launch_path
-                $friendly_name = $_.app.watch_process_for_exit
+                $friendly_name = [IO.Path]::GetFileNameWithoutExtension($_.app.watch_process_for_exit)
                 if ($_.app.arguments) {
                     $friendly_arguments = $_.app.arguments.Split(',')
                     Write-Host "[Launch]: $friendly_path_name $friendly_arguments" -ForegroundColor Magenta
